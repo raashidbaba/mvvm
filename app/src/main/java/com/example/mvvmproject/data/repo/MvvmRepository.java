@@ -3,7 +3,7 @@ package com.example.mvvmproject.data.repo;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.mvvmproject.data.Client.MvvmApiManager;
-import com.example.mvvmproject.data.model.PopularModel;
+import com.example.mvvmproject.data.model.CategoryModel;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class MvvmRepository {
     private static MvvmRepository instance;
     private MvvmApiManager apiManager;
 
-    private final MutableLiveData<List<PopularModel>> popularMovies = new MutableLiveData<>();
+    private final MutableLiveData<List<CategoryModel>> category = new MutableLiveData<>();
 
     public MvvmRepository(MvvmApiManager apiManager) {
         this.apiManager = apiManager;
@@ -28,23 +28,23 @@ public class MvvmRepository {
        return instance;
     }
 
-    public MutableLiveData<List<PopularModel>> GetPopularMovies(){
-        apiManager.getPopularMovies(new Callback<List<PopularModel>>() {
+    public MutableLiveData<List<CategoryModel>> GetCategoryObserver(){
+        apiManager.getCategories(new Callback<List<CategoryModel>>() {
             @Override
-            public void onResponse(Call<List<PopularModel>> call, Response<List<PopularModel>> response) {
+            public void onResponse(Call<List<CategoryModel>> call, Response<List<CategoryModel>> response) {
                 if(response.isSuccessful()){
-                    List<PopularModel> body = response.body();
-                    popularMovies.setValue(body);
+                    List<CategoryModel> body = response.body();
+                    category.setValue(body);
                 }else {
-                    popularMovies.postValue(null);
+                    category.postValue(null);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<PopularModel>> call, Throwable t) {
-                popularMovies.postValue(null);
+            public void onFailure(Call<List<CategoryModel>> call, Throwable t) {
+                category.postValue(null);
             }
         });
-        return popularMovies;
+        return category;
     }
 }

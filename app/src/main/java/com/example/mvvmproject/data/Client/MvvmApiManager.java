@@ -2,7 +2,7 @@ package com.example.mvvmproject.data.Client;
 
 import com.example.mvvmproject.Config.Configuration;
 import com.example.mvvmproject.data.Api.MvvmApi;
-import com.example.mvvmproject.data.model.PopularModel;
+import com.example.mvvmproject.data.model.CategoryModel;
 
 import java.util.List;
 
@@ -24,8 +24,8 @@ public class MvvmApiManager {
         return  ApiManager;
     }
 
-    public void getPopularMovies(Callback<List<PopularModel>> callback){
-        Call<List<PopularModel>> popular = service.Popular(Configuration.APIKEY);
+    public void getCategories(Callback<List<CategoryModel>> callback){
+        Call<List<CategoryModel>> popular = service.Category();
         popular.enqueue(callback);
     }
 }

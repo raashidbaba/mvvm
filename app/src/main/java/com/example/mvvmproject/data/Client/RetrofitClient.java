@@ -9,8 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
     public static MvvmApi Create(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Configuration.ROOTAPI)
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(Configuration.ROOTAPI)//APi Call
+                .addConverterFactory(GsonConverterFactory.create()) //Gson
                 .build();
         return retrofit.create(MvvmApi.class);
     }
